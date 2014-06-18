@@ -15,8 +15,8 @@ Events.send(None, "test_event_loaded")
 
 class Test(object):
     def __init__(self):
-        self.on_work_start = Delegate("_".join(("start", self.__class__.__name__)))
-        self.on_work_end = Delegate("_".join(("end", self.__class__.__name__)))
+        self.on_work_start = Delegate(self, "_".join(("start", self.__class__.__name__)))
+        self.on_work_end = Delegate(self, "_".join(("end", self.__class__.__name__)))
 
     def work(self):
         self.on_work_start.notify()
@@ -43,7 +43,7 @@ def main():
 
     test_obj.on_work_end -= on_end_handler
     test_obj.work()
-    AppEvents.stop()
+    Events.send(None, "stop")
 
 
 if __name__ == "__main__":

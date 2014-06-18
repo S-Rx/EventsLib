@@ -10,7 +10,8 @@ from Event import Event
 
 
 class Delegate(object):
-    def __init__(self, name):
+    def __init__(self, sender, name):
+        self.sender = sender
         self.name = name
         self.observers = []
 
@@ -27,7 +28,7 @@ class Delegate(object):
         self.observers = []
 
     def notify(self, *args, **kwargs):
-        event = Event(self.name, *args, **kwargs)
+        event = Event(self.sender, self.name, *args, **kwargs)
         for observer in self.observers:
             if callable(observer):
                 observer(event)
