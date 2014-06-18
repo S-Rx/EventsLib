@@ -1,0 +1,4 @@
+EventsLib
+=========
+
+simple events implementation
