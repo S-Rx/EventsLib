@@ -7,8 +7,7 @@
 __author__ = 'redlex'
 
 from AppEvents import Events
-import test_event
-import time
+import test_event  # module is not used, but raises an event
 import time
 
 
@@ -63,14 +62,14 @@ class Watcher(object):
 
 
 def main():
-    Events.register("test_event_loaded", module_handler)
+    Events.register("test_event_loaded", module_handler)  # catch an event of the imported module
     job = Worker()
-    listener = Watcher()
+    listener = Watcher()  # register handlers
     job.run()
     del listener
     job.run()
     print("--" * 60)
-    Events.send(None, "stop")
+    Events.send(None, "stop")  # stop events manager thread
 
 
 if __name__ == "__main__":
