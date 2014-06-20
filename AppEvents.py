@@ -58,8 +58,8 @@ class AppEvents(Thread):
     def add_event(self, event):
         self.events.put(event)
 
-    def send(self, sender, event_id, *args, **kwargs):
-        event = Event(sender, event_id, *args, **kwargs)
+    def send(self, sender, event_name, *args, **kwargs):
+        event = Event(sender, event_name, *args, **kwargs)
         self.add_event(event)
         self.events.join()
 
