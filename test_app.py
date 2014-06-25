@@ -9,7 +9,6 @@ __author__ = 'redlex'
 from AppEvents import Events
 import test_event
 import time
-import time
 
 
 def timeit(func):
