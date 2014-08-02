@@ -13,3 +13,17 @@ class Event(object):
         self.name = name
         self.args = args
         self.kwargs = kwargs
+
+    def __getattr__(self, item):
+        if item in self.kwargs:
+            return self.kwargs[item]
+        elif item in self.__dict__:
+            return self.__dict__[item]
+        else:
+            raise AttributeError
+
+    def __getitem__(self, item):
+        if 0 <= item < len(self.args):
+            return self.args[item]
+        else:
+            raise AttributeError
